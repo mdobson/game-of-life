@@ -1,6 +1,6 @@
 {
-  "name": "game-of-life",
-  "version": "0.0.0",
+  "name": "evented-game-of-life",
+  "version": "0.1.0",
   "description": "Game of Life implementation",
   "main": "index.js",
   "scripts": {
