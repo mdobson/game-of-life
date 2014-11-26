@@ -14,6 +14,13 @@ var Board = module.exports = function(size) {
       self.cells.push(c);
     }
   }
+  this.on('start', function() {
+    self.start();
+  });
+
+  this.on('stop', function() {
+    self.stop();
+  });
 };
 util.inherits(Board, EventEmitter);
 
@@ -41,6 +48,10 @@ Board.prototype.start = function() {
     });
     self.emit('update');
   }, 2000);
+};
+
+Board.prototype.stop = function() {
+  clearInterval(this.timer);
 };
 
 Board.prototype.seed = function(coordinates) {
