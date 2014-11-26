@@ -1,10 +1,15 @@
+var EventEmitter = require('events').EventEmitter;
+var util = require('util');
+
 var Cell = module.exports = function(x, y, board) {
+  EventEmitter.call(this);
   this.state = 'dead';
   this.nextState = 'dead';
   this.x = x;
   this.y = y;
   this.board = board;
 };
+util.inherits(Cell, EventEmitter);
 
 Cell.prototype.kill = function() {
   this.nextState = 'dead';
@@ -16,6 +21,7 @@ Cell.prototype.rez = function() {
 
 Cell.prototype.commit = function() {
   this.state = this.nextState;
+  this.emit(this.state);
 };
 Cell.prototype.nextTurn = function() {
   var self = this;
